@@ -3,28 +3,39 @@ import "./App.css";
 import allContacts from "./contacts.json";
 
 function App() {
+  // Creo el estado
   const [contactsDisplay, setContactsDisplay] = useState(
     allContacts.slice(0, 5)
   );
 
+  // Handle para añadir contactos
   const handleAddContact = () => {
     console.log("Probando añadir contacto");
 
     // Selecciono al azar un elemento del array
     const randomContact =
       allContacts[Math.floor(Math.random() * (allContacts.length - 5) + 5)];
-    console.log(randomContact);
 
     // Lo elimino del array del JSON
     const contactToAdd = allContacts.shift(randomContact);
 
     // Lo añado al array que se visualiza
     const clone = JSON.parse(JSON.stringify(contactsDisplay));
-
     clone.push(contactToAdd);
+    setContactsDisplay(clone);
+  };
+
+  const handleSortName = () => {
+    const clone = JSON.parse(JSON.stringify(contactsDisplay));
+
+    clone.sort((a, b) => {
+      return a.name > b.name ? 1 : -1;
+    });
 
     setContactsDisplay(clone);
   };
+
+  const handleSortPopularity = () => {};
 
   console.log(allContacts);
 
@@ -32,6 +43,8 @@ function App() {
     <div className="App">
       <h1>LAB | React IronContacts</h1>
       <button onClick={handleAddContact}>Add Random Contact</button>
+      <button onClick={handleSortName}>Sort by name</button>
+      <button onClick={handleSortPopularity}>Sort by popularity</button>
       {contactsDisplay.map((eachContact, index) => {
         return (
           <table key={index}>
