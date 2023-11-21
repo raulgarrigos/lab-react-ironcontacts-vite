@@ -45,6 +45,13 @@ function App() {
     setContactsDisplay(clone);
   };
 
+  const handleDeleteContact = (indexToDelete) => {
+    const clone = JSON.parse(JSON.stringify(contactsDisplay));
+    clone.splice(indexToDelete, 1);
+
+    setContactsDisplay(clone);
+  };
+
   console.log(allContacts);
 
   return (
@@ -62,6 +69,7 @@ function App() {
               <th>Popularity</th>
               <th>Won an Oscar</th>
               <th>Won an Emmy</th>
+              <th>Actions</th>
             </tr>
             <tr>
               <td>
@@ -76,6 +84,11 @@ function App() {
               <td>{eachContact.popularity}</td>
               <td>{eachContact.wonOscar === true && <p>🏆</p>}</td>
               <td>{eachContact.wonEmmy === true && <p>🌟</p>}</td>
+              <td>
+                <button onClick={() => handleDeleteContact(index)}>
+                  Delete
+                </button>
+              </td>
             </tr>
           </table>
         );
