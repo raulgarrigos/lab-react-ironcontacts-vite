@@ -14,11 +14,13 @@ function App() {
       <h1>LAB | React IronContacts</h1>
       {contactsDisplay.map((eachContact, index) => {
         return (
-          <table>
+          <table key={index}>
             <tr>
               <th>Picture</th>
               <th>Name</th>
               <th>Popularity</th>
+              <th>Won an Oscar</th>
+              <th>Won an Emmy</th>
             </tr>
             <tr>
               <td>
@@ -31,6 +33,8 @@ function App() {
               </td>
               <td>{eachContact.name}</td>
               <td>{eachContact.popularity}</td>
+              <td>{eachContact.wonOscar === true && <p>🏆</p>}</td>
+              <td>{eachContact.wonEmmy === true && <p>🌟</p>}</td>
             </tr>
           </table>
         );
