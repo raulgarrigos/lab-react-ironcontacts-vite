@@ -35,7 +35,15 @@ function App() {
     setContactsDisplay(clone);
   };
 
-  const handleSortPopularity = () => {};
+  const handleSortPopularity = () => {
+    const clone = JSON.parse(JSON.stringify(contactsDisplay));
+
+    clone.sort((a, b) => {
+      return a.popularity > b.popularity ? -1 : 1;
+    });
+
+    setContactsDisplay(clone);
+  };
 
   console.log(allContacts);
 
