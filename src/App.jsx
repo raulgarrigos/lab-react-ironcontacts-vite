@@ -2,11 +2,11 @@ import { useState } from "react";
 import "./App.css";
 import allContacts from "./contacts.json";
 
+const firstFiveContacts = allContacts.splice(0, 5);
+
 function App() {
   // Creo el estado
-  const [contactsDisplay, setContactsDisplay] = useState(
-    allContacts.slice(0, 5)
-  );
+  const [contactsDisplay, setContactsDisplay] = useState(firstFiveContacts);
 
   // Handle para añadir contactos
   const handleAddContact = () => {
@@ -25,6 +25,7 @@ function App() {
     setContactsDisplay(clone);
   };
 
+  //Handle para ordenar por nombre
   const handleSortName = () => {
     const clone = JSON.parse(JSON.stringify(contactsDisplay));
 
@@ -35,6 +36,7 @@ function App() {
     setContactsDisplay(clone);
   };
 
+  //Handle para ordenar por popularidad
   const handleSortPopularity = () => {
     const clone = JSON.parse(JSON.stringify(contactsDisplay));
 
@@ -45,6 +47,7 @@ function App() {
     setContactsDisplay(clone);
   };
 
+  // Handle para eliminar
   const handleDeleteContact = (indexToDelete) => {
     const clone = JSON.parse(JSON.stringify(contactsDisplay));
     clone.splice(indexToDelete, 1);
